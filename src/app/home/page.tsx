@@ -484,7 +484,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
             className="flex items-center gap-2 border border-gray-400 hover:bg-gray-400/20 px-4 py-2 rounded-full text-gray-200 text-sm font-medium transition-all duration-300"
           >
             <ExternalLink size={14} />
-            <span>{project.additionalLinkText || 'Ver Mais'}</span>
+            <span>{project.additionalLinkText || t.viewMore}</span>
           </a>
         )}
 
@@ -496,7 +496,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
             className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors px-3 py-2"
           >
             <Github size={16} />
-            <span>Código</span>
+            <span>{t.code}</span>
           </a>
         )}
       </div>
@@ -551,7 +551,12 @@ const translations = {
     mainAchievements: "Principais Conquistas",
     workTogether: "Vamos Trabalhar Juntos?",
     workTogetherDesc: "Estou disponível para projetos freelance e oportunidades remotas. Entre em contato para discutirmos seu próximo projeto!",
-    sendEmail: "Enviar Email"
+    sendEmail: "Enviar Email",
+    // Navigation
+    about: "Sobre",
+    // Additional
+    viewMore: "Ver Mais",
+    code: "Código"
   },
   en: {
     fullStackDeveloper: "Full Stack Developer specialized in creating incredible digital experiences",
@@ -598,7 +603,12 @@ const translations = {
     mainAchievements: "Main Achievements",
     workTogether: "Let's Work Together?",
     workTogetherDesc: "I'm available for freelance projects and remote opportunities. Get in touch to discuss your next project!",
-    sendEmail: "Send Email"
+    sendEmail: "Send Email",
+    // Navigation 
+    about: "About",
+    // Additional
+    viewMore: "View More",
+    code: "Code"
   }
 };
 
@@ -705,25 +715,25 @@ const FixedNavigation = ({ currentLang, setCurrentLang }: { currentLang: string,
                     onClick={() => scrollToSection('about')}
                     className="text-gray-300 hover:text-purple-400 transition-colors"
                   >
-                    {currentLang === 'pt' ? 'Sobre' : 'About'}
+                    {t.about}
                   </button>
                   <button 
                     onClick={() => scrollToSection('projects')}
                     className="text-gray-300 hover:text-purple-400 transition-colors"
                   >
-                    {currentLang === 'pt' ? 'Projetos' : 'Projects'}
+                    {t.projects}
                   </button>
                   <button 
                     onClick={() => scrollToSection('experience')}
                     className="text-gray-300 hover:text-purple-400 transition-colors"
                   >
-                    {currentLang === 'pt' ? 'Experiência' : 'Experience'}
+                    {t.experience}
                   </button>
                   <button 
                     onClick={() => scrollToSection('contact')}
                     className="text-gray-300 hover:text-purple-400 transition-colors"
                   >
-                    {currentLang === 'pt' ? 'Contato' : 'Contact'}
+                    {t.contact}
                   </button>
                 </div>
                 <LanguageSwitcher currentLang={currentLang} setCurrentLang={setCurrentLang} />
@@ -737,7 +747,7 @@ const FixedNavigation = ({ currentLang, setCurrentLang }: { currentLang: string,
 };
 
 export default function HomePage() {
-  const [currentLang, setCurrentLang] = useState('pt');
+  const [currentLang, setCurrentLang] = useState('en');
   const t = translations[currentLang as keyof typeof translations];
 
   // Seção de tecnologias com ícones
@@ -856,7 +866,7 @@ export default function HomePage() {
       technologies: ["TypeScript", "Next.js", "React Native", "JavaScript"],
       demo: "#",
       period: "2024",
-      type: "MVP Development",
+      type: "Software Factory",
       location: "Portugal"
     },
     {
