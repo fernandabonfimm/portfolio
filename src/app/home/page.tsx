@@ -597,7 +597,7 @@ const translations = {
     viewProjects: "View Projects",
     contact: "Get in Touch",
     aboutMe: "About Me",
-    projects: "Freelance Projects",
+    projects: "Developed Projects",
     awards: "Awards and Recognition",
     experience: "Professional Experience",
     education: "Academic Background",
@@ -1233,9 +1233,11 @@ export default function HomePage() {
       role: "Fullstack Software Developer",
       company: "Lastlink",
       period: "November 2023 - March 2024", 
-      description: "Frontend development of 'Study in Portugal' MVP with TypeScript and Next.js. New features and fixes in React Native mobile apps.",
-      highlights: ["TypeScript + Next.js", "React Native", "MVP Development", "International market"],
-      type: "Software Factory"
+      description: "Contribution to the development of new dashboard for content creators with sales reporting features. Backend with C#, .NET, Entity Framework, MySQL and microservices. Frontend with Angular, React.js, HTML, SCSS, TailwindCSS. Messaging with RabbitMQ for chat and payments.",
+      highlights: ["Creator dashboard", "Microservices + RabbitMQ", "Angular + React", "MySQL + .NET"],
+      type: "Startup",
+      link: "https://blog.lastlink.com/nova-dashboard-lastlink/",
+      linkText: "View Dashboard"
     },
     {
       role: "Fullstack Developer",
@@ -2058,16 +2060,16 @@ export default function HomePage() {
                     )}
 
                     {/* Link */}
-                    {exp.link && exp.linkText && (
+                    {(exp as any).link && (exp as any).linkText && (
                       <div className="mt-4">
                         <a 
-                          href={exp.link}
+                          href={(exp as any).link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 inline-flex w-fit"
                         >
                           <ExternalLink size={14} />
-                          {exp.linkText}
+                          {(exp as any).linkText}
                         </a>
                       </div>
                     )}
