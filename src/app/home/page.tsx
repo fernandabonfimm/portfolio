@@ -333,7 +333,7 @@ const GitHubProfile = () => {
 };
 
 // Project Card Component
-const ProjectCard = ({ project, index }: { project: any, index: number }) => {
+const ProjectCard = ({ project, index, translations }: { project: any, index: number, translations: any }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
@@ -484,7 +484,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
             className="flex items-center gap-2 border border-gray-400 hover:bg-gray-400/20 px-4 py-2 rounded-full text-gray-200 text-sm font-medium transition-all duration-300"
           >
             <ExternalLink size={14} />
-            <span>{project.additionalLinkText || t.viewMore}</span>
+            <span>{project.additionalLinkText || translations.viewMore}</span>
           </a>
         )}
 
@@ -496,7 +496,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
             className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors px-3 py-2"
           >
             <Github size={16} />
-            <span>{t.code}</span>
+            <span>{translations.code}</span>
           </a>
         )}
       </div>
@@ -1526,7 +1526,7 @@ export default function HomePage() {
 
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} index={index} />
+              <ProjectCard key={index} project={project} index={index} translations={t} />
             ))}
           </div>
 
