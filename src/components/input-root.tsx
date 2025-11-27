@@ -1,0 +1,15 @@
+import { componentSelector } from "@/utils/helpers/component-selector"
+import React from "react"
+
+const rootVariations = {
+    default: (props: React.HTMLAttributes<HTMLDivElement>) =>
+        <div {...props} className="flex-col flex relative w-full" />,
+    "default-full": (props: React.HTMLAttributes<HTMLDivElement>) =>
+        <div {...props} className="flex-col flex relative w-full h-full" />,
+    checkbox: (props: React.HTMLAttributes<HTMLDivElement>) =>
+        <div {...props} className="flex relative gap-3" />
+}
+
+const InputRoot =  componentSelector<keyof typeof rootVariations, React.HTMLAttributes<HTMLDivElement>, "className">(rootVariations)
+
+export default InputRoot
