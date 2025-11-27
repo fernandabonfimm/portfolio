@@ -274,7 +274,7 @@ const GitHubProfile = () => {
         {/* Profile info */}
         <div className="text-center mb-4 relative z-10">
           <h3 className="text-xl font-bold text-white mb-1">fernandabonfimm</h3>
-          <p className="text-gray-200 text-sm font-medium mb-1">Full Stack Developer</p>
+          <p className="text-gray-200 text-sm font-medium mb-1">{t.fullStackTitle}</p>
           <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
             <span>📍 Ribeirão Preto, SP</span>
             <span>⭐ 50+ repos</span>
@@ -285,11 +285,11 @@ const GitHubProfile = () => {
         <div className="flex gap-4 mb-4 relative z-10">
           <div className="text-center">
             <div className="text-lg font-bold text-white">25+</div>
-            <div className="text-xs text-gray-400">Repositories</div>
+            <div className="text-xs text-gray-400">{t.repositories}</div>
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">100+</div>
-            <div className="text-xs text-gray-400">Commits</div>
+            <div className="text-xs text-gray-400">{t.commits}</div>
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">10+</div>
@@ -373,7 +373,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
               <div className="text-center p-4">
                 <Globe className="text-purple-400 mx-auto mb-2" size={32} />
                 <p className="text-white text-sm font-medium mb-1">Preview do Site</p>
-                <p className="text-gray-300 text-xs">Clique em "Ver Site" para abrir</p>
+                <p className="text-gray-300 text-xs">{t.clickToOpen}</p>
               </div>
             </div>
             <iframe
@@ -556,7 +556,28 @@ const translations = {
     about: "Sobre",
     // Additional
     viewMore: "Ver Mais",
-    code: "Código"
+    code: "Código",
+    fullStackTitle: "Full Stack Developer",
+    // Project preview
+    clickToOpen: "Clique em \"Ver Site\" para abrir",
+    clickReportage: "Clique no link \"Ver Reportagem\" para abrir a página completa",
+    // GitHub stats
+    repositories: "Repositórios",
+    commits: "Commits",
+    followers: "Seguidores",
+    // Project sections
+    projectsTitle: "Projetos Freelance",
+    // Footer
+    developedWith: "Desenvolvido com",
+    and: "e", 
+    by: "por",
+    // Education section
+    educationTitle: "Formação Acadêmica",
+    viewInstitution: "Ver Instituição",
+    viewProject: "Ver Projeto",
+    viewSite: "Ver Site",
+    scientificArticle: "Artigo Científico",
+    viewReportage: "Ver Reportagem"
   },
   en: {
     fullStackDeveloper: "Full Stack Developer specialized in creating incredible digital experiences",
@@ -608,7 +629,28 @@ const translations = {
     about: "About",
     // Additional
     viewMore: "View More",
-    code: "Code"
+    code: "Code", 
+    fullStackTitle: "Full Stack Developer",
+    // Project preview
+    clickToOpen: "Click \"View Site\" to open",
+    clickReportage: "Click \"View Report\" link to open the full page",
+    // GitHub stats
+    repositories: "Repositories",
+    commits: "Commits",
+    followers: "Followers",
+    // Project sections
+    projectsTitle: "Freelance Projects",
+    // Footer
+    developedWith: "Developed with",
+    and: "and",
+    by: "by",
+    // Education section  
+    educationTitle: "Academic Background",
+    viewInstitution: "View Institution",
+    viewProject: "View Project",
+    viewSite: "View Site",
+    scientificArticle: "Scientific Article",
+    viewReportage: "View Report"
   }
 };
 
@@ -749,6 +791,25 @@ const FixedNavigation = ({ currentLang, setCurrentLang }: { currentLang: string,
 export default function HomePage() {
   const [currentLang, setCurrentLang] = useState('en');
   const t = translations[currentLang as keyof typeof translations];
+  
+  // Função para obter dados traduzidos
+  const getTranslatedData = () => {
+    return currentLang === 'pt' ? {
+      experiences: experiencesPt,
+      education: educationPt, 
+      awards: awardsPt,
+      projects: projectsPt,
+      additionalSkills: additionalSkillsPt
+    } : {
+      experiences: experiencesEn,
+      education: educationEn,
+      awards: awardsEn, 
+      projects: projectsEn,
+      additionalSkills: additionalSkillsEn
+    };
+  };
+  
+  const translatedData = getTranslatedData();
 
   // Seção de tecnologias com ícones
   const technologies = [
@@ -806,8 +867,8 @@ export default function HomePage() {
     ]
   };
 
-  // Skills Adicionais
-  const additionalSkills = [
+  // Skills Adicionais - Português
+  const additionalSkillsPt = [
     'Documentação Técnica',
     'Pensamento Analítico', 
     'Solução de Problemas',
@@ -815,9 +876,19 @@ export default function HomePage() {
     'Automação de Testes',
     'Metodologias Ágeis'
   ];
+  
+  // Skills Adicionais - English
+  const additionalSkillsEn = [
+    'Technical Documentation',
+    'Analytical Thinking', 
+    'Problem Solving',
+    'Team Collaboration',
+    'Test Automation',
+    'Agile Methodologies'
+  ];
 
-  // Projetos Freelance Reais 2022-2025
-  const projects = [
+  // Projetos Freelance - Português
+  const projectsPt = [
     // {
     //   title: "Clica Cidadão",
     //   description: "Aplicativo React Native para comunicação municipal em pré-lançamento no Google Play. Inclui painel administrativo completo com React, Node.js e MongoDB.",
@@ -909,7 +980,7 @@ export default function HomePage() {
     }
   ];
 
-  const awards = [
+  const awardsPt = [
     {
       title: "TechRenova - Logística de Reciclagem",
       organization: "2º Hack Barão",
@@ -930,7 +1001,7 @@ export default function HomePage() {
     }
   ];
 
-  const experiences = [
+  const experiencesPt = [
     {
       role: "Desenvolvedora Fullstack Pleno",
       company: "Gelato Borelli",
@@ -991,7 +1062,7 @@ export default function HomePage() {
     }
   ];
 
-  const education = [
+  const educationPt = [
     {
       degree: "Bacharel em Ciência da Computação",
       institution: "Centro Universitário Barão de Mauá",
@@ -1023,6 +1094,141 @@ export default function HomePage() {
       institution: "Workshops e Semanas Integradas",
       period: "2022 - 2023",
       description: "Ministrei workshops de programação no-code, fundamentos de carreiras em tecnologia, lógica de programação com Scratch, APIs REST e bancos NoSQL. Orientação prática em MongoDB Atlas, JavaScript e Express para construção de APIs.",
+      link: "",
+      linkText: ""
+    }
+  ];
+
+  // Projects - English Version
+  const projectsEn = [
+    {
+      title: "Balões Pic Pic E-commerce",
+      description: "Complete e-commerce development for balloon decoration company. Custom PHP system with shopping cart, admin panel, product management, and cPanel hosting integration.",
+      image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&h=300&fit=crop",
+      technologies: ["PHP", "HTML", "MySQL", "MVC Framework", "cPanel"],
+      demo: "https://baloespicpic.com.br",
+      additionalLink: "https://baloespicpic.com.br/lp",
+      additionalLinkText: "Landing Page",
+      period: "2024-2025",
+      type: "E-commerce + Admin Panel"
+    }
+  ];
+
+  // Awards - English Version  
+  const awardsEn = [
+    {
+      title: "TechRenova - Recycling Logistics",
+      organization: "2º Hack Barão",
+      year: "2023", 
+      description: "3rd Place - Application to optimize recycling logistics connecting citizens, collectors and recycling companies",
+      link: "https://www3.baraodemaua.br/eventos/hack-barao-2023-maratona-de-inovacao-e-criatividade",
+      position: "3rd Place",
+      project: "TechRenova"
+    },
+    {
+      title: "Melff - Urban Mobility and Safety",
+      organization: "1º Hack Barão", 
+      year: "2022",
+      description: "1st Place - Leadership of winning project focused on improving safety and lighting in poorly lit streets",
+      link: "https://jornalismo.baraodemaua.br/1o-hack-barao-premia-propostas-de-mobilidade-urbana-e-seguranca",
+      position: "1st Place", 
+      project: "Melff"
+    }
+  ];
+
+  // Experiences - English Version
+  const experiencesEn = [
+    {
+      role: "Mid-Level Fullstack Developer",
+      company: "Gelato Borelli", 
+      period: "July 2025 - Present",
+      description: "Developer at Gelato Borelli franchise, delivering innovative solutions for over 200 franchise stores in Brazil. PHP API development (MVC) with Firebird database, React Native and Next.js front-end projects, including queue management system.",
+      highlights: ["200+ franchise stores", "PHP MVC + Firebird", "React Native + Next.js", "Queue management"],
+      type: "Fullstack"
+    },
+    {
+      role: "Software Developer", 
+      company: "RDI Software part of Capgemini",
+      period: "March 2024 - July 2025",
+      description: "Developer in legacy distributed POS system used by McDonald's global fast food chain. LATAM team member, responsible for development, maintenance, bug support and weekly bundle delivery for over 2,200 stores in Latin America.",
+      highlights: ["2,200+ McDonald's LATAM stores", "Critical bug support", "C# + JavaScript ECMA3", "Weekly sprints"],
+      type: "Enterprise Software"
+    },
+    {
+      role: "Fullstack Software Developer",
+      company: "Lastlink",
+      period: "November 2023 - March 2024", 
+      description: "Frontend development of 'Study in Portugal' MVP with TypeScript and Next.js. New features and fixes in React Native mobile apps.",
+      highlights: ["TypeScript + Next.js", "React Native", "MVP Development", "International market"],
+      type: "Software Factory"
+    },
+    {
+      role: "Fullstack Developer",
+      company: "Agência UAMA",
+      period: "May 2023 - November 2023",
+      description: "Complete website development and client collaboration. Leadership in requirements gathering, Figma prototyping, WordPress/Shopify implementation, marketing automation. Lead generation, email marketing and WhatsApp automation with GPT-3.5/4.0.",
+      highlights: ["WordPress + Shopify", "GPT Automation", "Lead Generation", "Multiple sectors"],
+      type: "Web Agency"
+    },
+    {
+      role: "Fullstack Software Developer", 
+      company: "Evermart",
+      period: "June 2022 - May 2023",
+      description: "Fullstack developer at Creator Economy startup Evermart. Implementation and launch of new React Native app for content creators and affiliates, replacing previous system. Improvements to React web platform and Node.js, NestJS, MongoDB backend with Pagar.me integration.",
+      highlights: ["React Native App", "Creator Economy", "Node.js + NestJS", "Pagar.me Integration"],
+      type: "Startup"
+    },
+    {
+      role: "Frontend Developer",
+      company: "Fairy Solutions", 
+      period: "December 2021 - June 2022",
+      description: "Frontend developer at Fairy Code Software Factory, developing applications for various clients with JavaScript, React, TypeScript and Next.js. Highlight for aviation sector solutions and platform for oncologist doctors for patient diagnosis and treatment.",
+      highlights: ["Aviation sector", "Medical platform", "React + TypeScript", "Next.js"],
+      type: "Software Factory"
+    },
+    {
+      role: "Network Analyst",
+      company: "Multifrio Refrigeration",
+      period: "June 2021 - December 2021", 
+      description: "First job in IT field. Responsible for company's IT infrastructure in Ribeirão Preto. Machine formatting, printer configuration, internet connectivity support and technical support in Protheus ERP system.",
+      highlights: ["First IT job", "Complete infrastructure", "Protheus ERP", "Technical support"],
+      type: "IT Support"
+    }
+  ];
+
+  // Education - English Version
+  const educationEn = [
+    {
+      degree: "Bachelor in Computer Science",
+      institution: "Centro Universitário Barão de Mauá", 
+      period: "2021 - 2024",
+      description: "Bachelor in Computer Science from Centro Universitário Barão de Mauá (MEC grade: 5/5). Focused on tool development, technology transfer and interdisciplinary computational problem solving.",
+      link: "https://baraodemaua.br",
+      linkText: "View Institution"
+    },
+    {
+      degree: "Scientific Research Program",
+      institution: "Centro Universitário Barão de Mauá",
+      period: "2023 - 2024", 
+      description: "Scientific research project focused on reducing live animal use in experiments. Developed RESTful API with Node.js, Express and MongoDB (MVC) and frontend with React, JavaScript, Ant Design and Axios.",
+      link: "https://github.com/fernandabonfimm/QuimeraProject",
+      linkText: "View Project",
+      additionalLink: "https://github.com/fernandabonfimm/QuimeraProject/blob/main/scientificArticleQuimera_Fernanda.pdf", 
+      additionalLinkText: "Scientific Article"
+    },
+    {
+      degree: "Filamento Agency Website",
+      institution: "Centro Universitário Barão de Mauá",
+      period: "2024 - 2025",
+      description: "Leadership and development of Filamento WordPress website (non-profit agency). Complete delivery in 3 days with blog, events and projects. Hosted on Azure with Elementor and validated Figma prototype. Currently teaching weekly classes about project maintenance.",
+      link: "https://filamento.baraodemaua.br",
+      linkText: "View Site"
+    },
+    {
+      degree: "Development Mentoring and Teaching", 
+      institution: "Workshops and Integrated Weeks",
+      period: "2022 - 2023",
+      description: "Taught no-code programming workshops, technology career fundamentals, Scratch programming logic, REST APIs and NoSQL databases. Practical guidance on MongoDB Atlas, JavaScript and Express for API construction.",
       link: "",
       linkText: ""
     }
@@ -1382,7 +1588,7 @@ export default function HomePage() {
                 <div className="mt-8">
                   <h4 className="text-lg font-semibold text-white mb-4">{t.additionalSkills}</h4>
                   <div className="flex flex-wrap gap-3">
-                    {additionalSkills.map((skill, index) => (
+                    {translatedData.additionalSkills.map((skill, index) => (
                       <motion.span
                         key={skill}
                         initial={{ opacity: 0, scale: 0 }}
@@ -1525,7 +1731,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {translatedData.projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} translations={t} />
             ))}
           </div>
@@ -1593,7 +1799,7 @@ export default function HomePage() {
           </motion.h2>
           
           <div className="grid lg:grid-cols-2 gap-8">
-            {awards.map((award, index) => (
+            {translatedData.awards.map((award, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
@@ -1666,7 +1872,7 @@ export default function HomePage() {
                     {/* Overlay para casos de erro */}
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                       <p className="text-gray-300 text-sm text-center px-4">
-                        Clique no link "Ver Reportagem" para abrir a página completa
+                        {t.clickReportage}
                       </p>
                     </div>
                   </div>
@@ -1709,7 +1915,7 @@ export default function HomePage() {
           </motion.h2>
           
           <div className="space-y-8">
-            {experiences.map((exp, index) => (
+            {translatedData.experiences.map((exp, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -1825,7 +2031,7 @@ export default function HomePage() {
             }}
           >
             <span className="relative">
-              {t.education}
+              {t.educationTitle}
               <motion.div 
                 className="absolute -right-6 -top-2 w-4 h-4 border-2 border-purple-400 rounded rotate-45"
                 animate={{ rotate: [45, 405, 45] }}
@@ -1835,7 +2041,7 @@ export default function HomePage() {
           </motion.h2>
           
           <div className="space-y-8">
-            {education.map((edu, index) => (
+            {translatedData.education.map((edu, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -1867,7 +2073,7 @@ export default function HomePage() {
                             className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
                           >
                             <ExternalLink size={14} />
-                            {edu.linkText}
+                            {edu.linkText || t.viewProject}
                           </a>
                         )}
                         {edu.additionalLink && edu.additionalLinkText && (
@@ -1878,7 +2084,7 @@ export default function HomePage() {
                             className="flex items-center gap-2 border border-purple-400 hover:bg-purple-400/20 px-4 py-2 rounded-full text-purple-200 text-sm font-medium transition-all duration-300"
                           >
                             <ExternalLink size={14} />
-                            {edu.additionalLinkText}
+                            {edu.additionalLinkText || t.scientificArticle}
                           </a>
                         )}
                       </div>
