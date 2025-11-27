@@ -535,7 +535,23 @@ const translations = {
     availableFreelance: "Disponível para Freelances",
     remoteWork: "Trabalho remoto para o mundo todo",
     internationalWork: "Trabalho Remoto Internacional",
-    globalExperience: "Experiência com clientes globais • Disponível para oportunidades no exterior"
+    globalExperience: "Experiência com clientes globais • Disponível para oportunidades no exterior",
+    portfolioSelected: "Portfólio selecionado - Conheça alguns dos meus principais projetos freelance",
+    featuredProjects: "Projetos em Destaque",
+    of25Delivered: "De 50+ Entregues",
+    yearsExperience: "Anos de Experiência",
+    onTimeProjects: "Projetos no Prazo",
+    countriesServed: "Países Atendidos",
+    experienceSummary: "Resumo da Experiência",
+    companiesWorked: "Empresas Trabalhadas",
+    storesImpacted: "Lojas Impactadas",
+    sinceFirstJob: "Desde primeiro emprego T.I",
+    startupsToMultinationals: "Startups a Multinacionais",
+    mcdonaldsLatam: "McDonald's LATAM",
+    mainAchievements: "Principais Conquistas",
+    workTogether: "Vamos Trabalhar Juntos?",
+    workTogetherDesc: "Estou disponível para projetos freelance e oportunidades remotas. Entre em contato para discutirmos seu próximo projeto!",
+    sendEmail: "Enviar Email"
   },
   en: {
     fullStackDeveloper: "Full Stack Developer specialized in creating incredible digital experiences",
@@ -566,7 +582,23 @@ const translations = {
     availableFreelance: "Available for Freelance",
     remoteWork: "Remote work worldwide",
     internationalWork: "International Remote Work",
-    globalExperience: "Experience with global clients • Available for international opportunities"
+    globalExperience: "Experience with global clients • Available for international opportunities",
+    portfolioSelected: "Selected Portfolio - Discover some of my main freelance projects",
+    featuredProjects: "Featured Projects",
+    of25Delivered: "From 50+ Delivered",
+    yearsExperience: "Years of Experience",
+    onTimeProjects: "On-Time Projects",
+    countriesServed: "Countries Served",
+    experienceSummary: "Experience Summary",
+    companiesWorked: "Companies Worked",
+    storesImpacted: "Stores Impacted",
+    sinceFirstJob: "Since first IT job",
+    startupsToMultinationals: "Startups to Multinationals",
+    mcdonaldsLatam: "McDonald's LATAM",
+    mainAchievements: "Main Achievements",
+    workTogether: "Let's Work Together?",
+    workTogetherDesc: "I'm available for freelance projects and remote opportunities. Get in touch to discuss your next project!",
+    sendEmail: "Send Email"
   }
 };
 
@@ -1091,7 +1123,7 @@ export default function HomePage() {
                   <ExternalLink className="text-purple-400" size={20} />
                 </motion.div>
                 <p className="text-lg font-semibold text-white">
-                  Disponível para Freelances
+                  {t.availableFreelance}
                 </p>
               </div>
               <p className="text-gray-300 text-sm">
@@ -1255,13 +1287,13 @@ export default function HomePage() {
 
               {/* Hard Skills Avançadas */}
               <div className="mt-12">
-                <h3 className="text-xl font-semibold text-white mb-6">Hard Skills Avançadas</h3>
+                <h3 className="text-xl font-semibold text-white mb-6">{t.hardSkills}</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* Frontend Skills */}
                   <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-lg p-5 rounded-xl border border-blue-400/20">
                     <h4 className="text-lg font-semibold text-blue-400 mb-4 flex items-center gap-2">
                       <Code size={20} />
-                      Frontend
+                      {t.frontend}
                     </h4>
                     <div className="space-y-3">
                       {advancedSkills.frontend.map((skill, index) => (
@@ -1287,7 +1319,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-lg p-5 rounded-xl border border-green-400/20">
                     <h4 className="text-lg font-semibold text-green-400 mb-4 flex items-center gap-2">
                       <Database size={20} />
-                      Backend & Cloud
+                      {t.backendCloud}
                     </h4>
                     <div className="space-y-3">
                       {advancedSkills.backend.map((skill, index) => (
@@ -1313,7 +1345,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-lg p-5 rounded-xl border border-purple-400/20">
                     <h4 className="text-lg font-semibold text-purple-400 mb-4 flex items-center gap-2">
                       <Palette size={20} />
-                      Tools & Platforms
+                      {t.toolsPlatforms}
                     </h4>
                     <div className="space-y-3">
                       {advancedSkills.tools.map((skill, index) => (
@@ -1338,7 +1370,7 @@ export default function HomePage() {
 
                 {/* Skills Adicionais */}
                 <div className="mt-8">
-                  <h4 className="text-lg font-semibold text-white mb-4">Skills Adicionais</h4>
+                  <h4 className="text-lg font-semibold text-white mb-4">{t.additionalSkills}</h4>
                   <div className="flex flex-wrap gap-3">
                     {additionalSkills.map((skill, index) => (
                       <motion.span
@@ -1476,7 +1508,7 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 backdrop-blur-lg px-6 py-3 rounded-full border border-purple-400/20">
               <Code className="text-purple-400" size={18} />
               <span className="text-gray-300 text-sm">
-                Portfólio selecionado - Conheça alguns dos meus principais projetos freelance
+                {t.portfolioSelected}
               </span>
               <ExternalLink className="text-blue-400" size={16} />
             </div>
@@ -1495,22 +1527,22 @@ export default function HomePage() {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
-            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-              <div className="text-3xl font-bold text-purple-400 mb-1">9</div>
-              <div className="text-sm text-gray-300">Projetos em Destaque</div>
-              <div className="text-xs text-gray-400 mt-1">De 25+ entregues</div>
+            <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-lg rounded-xl border border-purple-400/30 shadow-lg">
+              <div className="text-4xl font-bold text-purple-400 mb-2">15+</div>
+              <div className="text-base font-medium text-gray-200 mb-1">{t.featuredProjects}</div>
+              <div className="text-sm text-purple-300">{t.of25Delivered}</div>
             </div>
-            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-              <div className="text-3xl font-bold text-blue-400 mb-1">4</div>
-              <div className="text-sm text-gray-300">Anos de Experiência</div>
+            <div className="text-center p-6 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-lg rounded-xl border border-blue-400/30 shadow-lg">
+              <div className="text-4xl font-bold text-blue-400 mb-2">4+</div>
+              <div className="text-base font-medium text-gray-200">{t.yearsExperience}</div>
             </div>
-            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-              <div className="text-3xl font-bold text-green-400 mb-1">100%</div>
-              <div className="text-sm text-gray-300">Projetos no Prazo</div>
+            <div className="text-center p-6 bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-lg rounded-xl border border-green-400/30 shadow-lg">
+              <div className="text-4xl font-bold text-green-400 mb-2">100%</div>
+              <div className="text-base font-medium text-gray-200">{t.onTimeProjects}</div>
             </div>
-            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-              <div className="text-3xl font-bold text-yellow-400 mb-1">3</div>
-              <div className="text-sm text-gray-300">Países Atendidos</div>
+            <div className="text-center p-6 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-lg rounded-xl border border-yellow-400/30 shadow-lg">
+              <div className="text-4xl font-bold text-yellow-400 mb-2">3+</div>
+              <div className="text-base font-medium text-gray-200">{t.countriesServed}</div>
             </div>
           </motion.div>
         </div>
@@ -1701,7 +1733,7 @@ export default function HomePage() {
                     {/* Highlights */}
                     {exp.highlights && exp.highlights.length > 0 && (
                       <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-white mb-2">Principais Conquistas:</h4>
+                        <h4 className="text-sm font-semibold text-white mb-2">{t.mainAchievements}:</h4>
                         <div className="flex flex-wrap gap-2">
                           {exp.highlights.map((highlight, hIndex) => (
                             <span 
@@ -1744,18 +1776,18 @@ export default function HomePage() {
           >
             <div className="text-center p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-lg rounded-xl border border-blue-400/20">
               <div className="text-3xl font-bold text-blue-400 mb-2">4+</div>
-              <div className="text-sm text-gray-300 mb-1">Anos de Experiência</div>
-              <div className="text-xs text-gray-400">Desde primeiro emprego T.I</div>
+              <div className="text-sm text-gray-300 mb-1">{t.yearsExperience}</div>
+              <div className="text-xs text-gray-400">{t.sinceFirstJob}</div>
             </div>
             <div className="text-center p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-xl border border-purple-400/20">
               <div className="text-3xl font-bold text-purple-400 mb-2">7</div>
-              <div className="text-sm text-gray-300 mb-1">Empresas Trabalhadas</div>
-              <div className="text-xs text-gray-400">Startups a Multinacionais</div>
+              <div className="text-sm text-gray-300 mb-1">{t.companiesWorked}</div>
+              <div className="text-xs text-gray-400">{t.startupsToMultinationals}</div>
             </div>
             <div className="text-center p-6 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-lg rounded-xl border border-emerald-400/20">
               <div className="text-3xl font-bold text-emerald-400 mb-2">2.200+</div>
-              <div className="text-sm text-gray-300 mb-1">Lojas Impactadas</div>
-              <div className="text-xs text-gray-400">McDonald's LATAM</div>
+              <div className="text-sm text-gray-300 mb-1">{t.storesImpacted}</div>
+              <div className="text-xs text-gray-400">{t.mcdonaldsLatam}</div>
             </div>
           </motion.div>
         </div>
@@ -1881,7 +1913,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {currentLang === 'pt' ? 'Vamos Trabalhar Juntos?' : 'Let\'s Work Together?'}
+              {t.workTogether}
             </motion.h3>
             
             <motion.p 
@@ -1890,10 +1922,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {currentLang === 'pt' 
-                ? 'Estou disponível para projetos freelance e oportunidades remotas. Entre em contato para discutirmos seu próximo projeto!' 
-                : 'I\'m available for freelance projects and remote opportunities. Get in touch to discuss your next project!'
-              }
+              {t.workTogetherDesc}
             </motion.p>
             
             <motion.div 
@@ -1907,7 +1936,7 @@ export default function HomePage() {
                 className="flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 min-w-[200px] justify-center"
               >
                 <Mail size={20} />
-                {currentLang === 'pt' ? 'Enviar Email' : 'Send Email'}
+                {t.sendEmail}
               </a>
               
               <a 
