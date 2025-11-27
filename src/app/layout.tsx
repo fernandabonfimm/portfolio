@@ -5,7 +5,7 @@ import { Poppins } from 'next/font/google'
 import ScrollUp from '@/containers/scroll-up/scroll-up'
 
 export const metadata = {
-  title: 'Portfolio',
+  title: 'Portfolio | Fernanda Bonfim Dev',
   description: '',
 }
 
