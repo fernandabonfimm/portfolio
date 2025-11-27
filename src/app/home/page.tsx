@@ -171,7 +171,7 @@ const LinkedInProfile = ({ t }: { t: any }) => {
           </motion.div>
           <div>
             <h4 className="text-white font-bold text-lg">LinkedIn</h4>
-            <p className="text-blue-300 text-sm">{t.professionalNetwork || 'Professional Network'}</p>
+            <p className="text-blue-300 text-sm">{t?.professionalNetwork || 'Professional Network'}</p>
           </div>
         </div>
         
@@ -204,7 +204,7 @@ const LinkedInProfile = ({ t }: { t: any }) => {
             className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-4 py-2 rounded-full text-white text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <Linkedin size={14} />
-            {t.connect || 'Connect'}
+            {t?.connect || 'Connect'}
           </a>
           <a 
             href="https://br.linkedin.com/in/fernanda-bonfim-9596aa193"
@@ -212,7 +212,7 @@ const LinkedInProfile = ({ t }: { t: any }) => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-blue-400 hover:bg-blue-400/20 px-4 py-2 rounded-full text-blue-200 text-sm font-medium transition-all duration-300"
           >
-            {t.viewProfile || 'View Profile'}
+            {t?.viewProfile || 'View Profile'}
           </a>
         </div>
         
@@ -223,7 +223,7 @@ const LinkedInProfile = ({ t }: { t: any }) => {
             animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          {t.availableOpportunities || 'Available for opportunities'}
+          {t?.availableOpportunities || 'Available for opportunities'}
         </div>
       </div>
     </div>
@@ -254,7 +254,7 @@ const GitHubProfile = ({ t }: { t: any }) => {
           </motion.div>
           <div>
             <h4 className="text-white font-bold text-lg">GitHub</h4>
-            <p className="text-gray-300 text-sm">{t.developerPlatform || 'Developer Platform'}</p>
+            <p className="text-gray-300 text-sm">{t?.developerPlatform || 'Developer Platform'}</p>
           </div>
         </div>
         
@@ -274,7 +274,7 @@ const GitHubProfile = ({ t }: { t: any }) => {
         {/* Profile info */}
         <div className="text-center mb-4 relative z-10">
           <h3 className="text-xl font-bold text-white mb-1">fernandabonfimm</h3>
-          <p className="text-gray-200 text-sm font-medium mb-1">{t.fullStackTitle}</p>
+          <p className="text-gray-200 text-sm font-medium mb-1">{t?.fullStackTitle || 'Full Stack Developer'}</p>
           <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
             <span>📍 Ribeirão Preto, SP</span>
             <span>⭐ 50+ repos</span>
@@ -285,15 +285,15 @@ const GitHubProfile = ({ t }: { t: any }) => {
         <div className="flex gap-4 mb-4 relative z-10">
           <div className="text-center">
             <div className="text-lg font-bold text-white">25+</div>
-            <div className="text-xs text-gray-400">{t.repositories}</div>
+            <div className="text-xs text-gray-400">{t?.repositories || 'Repositories'}</div>
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">100+</div>
-            <div className="text-xs text-gray-400">{t.commits}</div>
+            <div className="text-xs text-gray-400">{t?.commits || 'Commits'}</div>
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">10+</div>
-            <div className="text-xs text-gray-400">{t.projects}</div>
+            <div className="text-xs text-gray-400">{t?.projects || 'Projects'}</div>
           </div>
         </div>
         
@@ -306,7 +306,7 @@ const GitHubProfile = ({ t }: { t: any }) => {
             className="flex items-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 px-4 py-2 rounded-full text-white text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <Github size={14} />
-            {t.follow || 'Follow'}
+            {t?.follow || 'Follow'}
           </a>
           <a 
             href="https://github.com/fernandabonfimm"
@@ -314,7 +314,7 @@ const GitHubProfile = ({ t }: { t: any }) => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-gray-400 hover:bg-gray-400/20 px-4 py-2 rounded-full text-gray-200 text-sm font-medium transition-all duration-300"
           >
-            {t.viewCode || 'View Code'}
+            {t?.viewCode || 'View Code'}
           </a>
         </div>
         
@@ -325,7 +325,7 @@ const GitHubProfile = ({ t }: { t: any }) => {
             animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           />
-          {t.activeDeveloper || 'Active developer'}
+          {t?.activeDeveloper || 'Active developer'}
         </div>
       </div>
     </div>
@@ -373,7 +373,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
               <div className="text-center p-4">
                 <Globe className="text-purple-400 mx-auto mb-2" size={32} />
                 <p className="text-white text-sm font-medium mb-1">{translations.sitePreview}</p>
-                <p className="text-gray-300 text-xs">{t.clickToOpen}</p>
+                <p className="text-gray-300 text-xs">{translations?.clickToOpen || 'Click "View Site" to open'}</p>
               </div>
             </div>
             <iframe
