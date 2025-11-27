@@ -817,25 +817,6 @@ const FixedNavigation = ({ currentLang, setCurrentLang }: { currentLang: string,
 export default function HomePage() {
   const [currentLang, setCurrentLang] = useState('en');
   const t = translations[currentLang as keyof typeof translations];
-  
-  // Função para obter dados traduzidos
-  const getTranslatedData = () => {
-    return currentLang === 'pt' ? {
-      experiences: experiencesPt,
-      education: educationPt, 
-      awards: awardsPt,
-      projects: projectsPt,
-      additionalSkills: additionalSkillsPt
-    } : {
-      experiences: experiencesEn,
-      education: educationEn,
-      awards: awardsEn, 
-      projects: projectsEn,
-      additionalSkills: additionalSkillsEn
-    };
-  };
-  
-  const translatedData = getTranslatedData();
 
   // Seção de tecnologias com ícones
   const technologies = [
@@ -1259,6 +1240,25 @@ export default function HomePage() {
       linkText: ""
     }
   ];
+
+  // Função para obter dados traduzidos (após todas as declarações)
+  const getTranslatedData = () => {
+    return currentLang === 'pt' ? {
+      experiences: experiencesPt,
+      education: educationPt, 
+      awards: awardsPt,
+      projects: projectsPt,
+      additionalSkills: additionalSkillsPt
+    } : {
+      experiences: experiencesEn,
+      education: educationEn,
+      awards: awardsEn, 
+      projects: projectsEn,
+      additionalSkills: additionalSkillsEn
+    };
+  };
+  
+  const translatedData = getTranslatedData();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white overflow-hidden">
