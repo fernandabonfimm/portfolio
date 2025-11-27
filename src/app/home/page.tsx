@@ -367,29 +367,55 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       {/* Project Image/Preview */}
       <div className="relative overflow-hidden rounded-lg mb-4">
         {showPreview && project.demo && project.demo !== '#' ? (
-          <div className="w-full h-48 bg-gray-900/50 rounded-lg overflow-hidden border border-gray-400/20">
+          <div className="w-full h-48 bg-gray-900/50 rounded-lg overflow-hidden border border-purple-400/20 relative">
+            {/* Fallback para sites que não permitem iframe */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center z-10">
+              <div className="text-center p-4">
+                <Globe className="text-purple-400 mx-auto mb-2" size={32} />
+                <p className="text-white text-sm font-medium mb-1">Preview do Site</p>
+                <p className="text-gray-300 text-xs">Clique em "Ver Site" para abrir</p>
+              </div>
+            </div>
             <iframe
               src={project.demo}
-              className="w-full h-full scale-75 origin-top-left"
+              className="w-full h-full scale-90 origin-center opacity-30"
               title={`Preview - ${project.title}`}
               frameBorder="0"
-              sandbox="allow-scripts allow-same-origin"
+              sandbox="allow-scripts allow-same-origin allow-popups"
               loading="lazy"
-              style={{ width: '133.33%', height: '133.33%' }}
+              style={{ 
+                width: '111.11%', 
+                height: '111.11%',
+                transform: 'scale(0.9) translateX(-5.56%) translateY(-5.56%)'
+              }}
+              onLoad={() => {
+                // Preview carregado com sucesso
+                console.log(`Site preview carregado: ${project.title}`);
+              }}
             />
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         ) : (
-          <img 
-            src={project.image} 
-            alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-          />
+          <div className="relative">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+            {/* Website Screenshot Overlay */}
+            {project.demo && project.demo !== '#' && (
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-center">
+                  <Globe className="text-white mx-auto mb-2" size={28} />
+                  <p className="text-white text-sm font-medium">Ver Site Online</p>
+                </div>
+              </div>
+            )}
+          </div>
         )}
         <motion.div 
           className="absolute inset-0 bg-purple-600/20 flex items-center justify-center"
           initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
+          animate={{ opacity: isHovered && !showPreview ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         >
           {project.demo && project.demo !== '#' ? (
@@ -869,14 +895,14 @@ export default function HomePage() {
       period: "Julho 2025 - Presente",
       description: "Desenvolvedora na franqueadora Gelato Borelli, atuando na entrega de soluções inovadoras para mais de 200 lojas franqueadas no Brasil. Desenvolvimento de APIs em PHP (MVC) com banco de dados Firebird, projetos front-end com React Native e Next.js, incluindo sistema de gestão de filas.",
       highlights: ["200+ lojas franqueadas", "PHP MVC + Firebird", "React Native + Next.js", "Gestão de filas"],
-      type: "Maior rede de franquias de Gelato do Brasil"
+      type: "Fullstack"
     },
     {
       role: "Desenvolvedora de Software",
       company: "RDI Software part of Capgemini",
       period: "Março 2024 - Julho 2025",
-      description: "Atuação como desenvolvedora C# e JavaScript em sistema distribuído legado de POS utilizado pela rede global de fast food McDonald's. Integrante do time LATAM, responsável pelo desenvolvimento, manutenção e entrega semanal de bundles para mais de 2.200 lojas na América Latina.",
-      highlights: ["2.200+ lojas McDonald's LATAM", "C# + JavaScript ECMA3", "Sistema POS distribuído", "Sprints semanais"],
+      description: "Atuação como desenvolvedora C# e JavaScript em sistema distribuído legado de POS utilizado pela rede global de fast food McDonald's. Integrante do time LATAM, responsável pelo desenvolvimento, manutenção, sustentação de bugs e entrega semanal de bundles para mais de 2.200 lojas na América Latina.",
+      highlights: ["2.200+ lojas McDonald's LATAM", "Sustentação de bugs críticos", "C# + JavaScript ECMA3", "Sprints semanais"],
       type: "Enterprise Software"
     },
     {
@@ -895,7 +921,7 @@ export default function HomePage() {
       period: "Fevereiro 2023 - Dezembro 2023",
       description: "Desenvolvimento completo de sites e colaboração com clientes. Liderança em levantamento de requisitos, prototipagem Figma, implantação WordPress/Shopify, automação de marketing. Implementação de lead generation, e-mail marketing e automação WhatsApp com GPT-3.5/4.0.",
       highlights: ["WordPress + Shopify", "Automação GPT", "Lead Generation", "Múltiplos setores"],
-      type: "Marketing Agency"
+      type: "Web Agency"
     },
     {
       role: "Desenvolvedora de Software Fullstack",
@@ -1440,6 +1466,22 @@ export default function HomePage() {
             </span>
           </motion.h2>
           
+          {/* Indicação de projetos adicionais */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mb-8 text-center"
+          >
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/10 to-blue-500/10 backdrop-blur-lg px-6 py-3 rounded-full border border-purple-400/20">
+              <Code className="text-purple-400" size={18} />
+              <span className="text-gray-300 text-sm">
+                Portfólio selecionado - Conheça alguns dos meus principais projetos freelance
+              </span>
+              <ExternalLink className="text-blue-400" size={16} />
+            </div>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
@@ -1454,8 +1496,9 @@ export default function HomePage() {
             className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-              <div className="text-3xl font-bold text-purple-400 mb-1">9+</div>
-              <div className="text-sm text-gray-300">Projetos Entregues</div>
+              <div className="text-3xl font-bold text-purple-400 mb-1">9</div>
+              <div className="text-sm text-gray-300">Projetos em Destaque</div>
+              <div className="text-xs text-gray-400 mt-1">De 25+ entregues</div>
             </div>
             <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
               <div className="text-3xl font-bold text-blue-400 mb-1">4</div>
@@ -1710,9 +1753,9 @@ export default function HomePage() {
               <div className="text-xs text-gray-400">Startups a Multinacionais</div>
             </div>
             <div className="text-center p-6 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-lg rounded-xl border border-emerald-400/20">
-              <div className="text-3xl font-bold text-emerald-400 mb-2">2.400+</div>
+              <div className="text-3xl font-bold text-emerald-400 mb-2">2.200+</div>
               <div className="text-sm text-gray-300 mb-1">Lojas Impactadas</div>
-              <div className="text-xs text-gray-400">McDonald's + Gelato Borelli</div>
+              <div className="text-xs text-gray-400">McDonald's LATAM</div>
             </div>
           </motion.div>
         </div>
