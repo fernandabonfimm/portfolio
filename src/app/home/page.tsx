@@ -148,7 +148,7 @@ const AnimatedSection = ({ children, className = "", id }: { children: React.Rea
 };
 
 // LinkedIn Profile Component
-const LinkedInProfile = () => {
+const LinkedInProfile = ({ t }: { t: any }) => {
   return (
     <div className="w-full h-80 rounded-xl overflow-hidden bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-lg border border-blue-400/20">
       <div className="w-full h-full flex flex-col items-center justify-center p-6 relative">
@@ -171,7 +171,7 @@ const LinkedInProfile = () => {
           </motion.div>
           <div>
             <h4 className="text-white font-bold text-lg">LinkedIn</h4>
-            <p className="text-blue-300 text-sm">Professional Network</p>
+            <p className="text-blue-300 text-sm">{t.professionalNetwork || 'Professional Network'}</p>
           </div>
         </div>
         
@@ -204,7 +204,7 @@ const LinkedInProfile = () => {
             className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-4 py-2 rounded-full text-white text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <Linkedin size={14} />
-            Connect
+            {t.connect || 'Connect'}
           </a>
           <a 
             href="https://br.linkedin.com/in/fernanda-bonfim-9596aa193"
@@ -212,7 +212,7 @@ const LinkedInProfile = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-blue-400 hover:bg-blue-400/20 px-4 py-2 rounded-full text-blue-200 text-sm font-medium transition-all duration-300"
           >
-            View Profile
+            {t.viewProfile || 'View Profile'}
           </a>
         </div>
         
@@ -223,7 +223,7 @@ const LinkedInProfile = () => {
             animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          Available for opportunities
+          {t.availableOpportunities || 'Available for opportunities'}
         </div>
       </div>
     </div>
@@ -231,7 +231,7 @@ const LinkedInProfile = () => {
 };
 
 // GitHub Profile Component
-const GitHubProfile = () => {
+const GitHubProfile = ({ t }: { t: any }) => {
   return (
     <div className="w-full h-80 rounded-xl overflow-hidden bg-gradient-to-br from-gray-800/50 to-purple-600/10 backdrop-blur-lg border border-gray-400/20">
       <div className="w-full h-full flex flex-col items-center justify-center p-6 relative">
@@ -254,7 +254,7 @@ const GitHubProfile = () => {
           </motion.div>
           <div>
             <h4 className="text-white font-bold text-lg">GitHub</h4>
-            <p className="text-gray-300 text-sm">Developer Platform</p>
+            <p className="text-gray-300 text-sm">{t.developerPlatform || 'Developer Platform'}</p>
           </div>
         </div>
         
@@ -293,7 +293,7 @@ const GitHubProfile = () => {
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-white">10+</div>
-            <div className="text-xs text-gray-400">Projects</div>
+            <div className="text-xs text-gray-400">{t.projects}</div>
           </div>
         </div>
         
@@ -306,7 +306,7 @@ const GitHubProfile = () => {
             className="flex items-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 px-4 py-2 rounded-full text-white text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <Github size={14} />
-            Follow
+            {t.follow || 'Follow'}
           </a>
           <a 
             href="https://github.com/fernandabonfimm"
@@ -314,7 +314,7 @@ const GitHubProfile = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-gray-400 hover:bg-gray-400/20 px-4 py-2 rounded-full text-gray-200 text-sm font-medium transition-all duration-300"
           >
-            View Code
+            {t.viewCode || 'View Code'}
           </a>
         </div>
         
@@ -325,7 +325,7 @@ const GitHubProfile = () => {
             animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}
           />
-          Active developer
+          {t.activeDeveloper || 'Active developer'}
         </div>
       </div>
     </div>
@@ -372,7 +372,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center z-10">
               <div className="text-center p-4">
                 <Globe className="text-purple-400 mx-auto mb-2" size={32} />
-                <p className="text-white text-sm font-medium mb-1">Preview do Site</p>
+                <p className="text-white text-sm font-medium mb-1">{translations.sitePreview}</p>
                 <p className="text-gray-300 text-xs">{t.clickToOpen}</p>
               </div>
             </div>
@@ -406,7 +406,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="text-center">
                   <Globe className="text-white mx-auto mb-2" size={28} />
-                  <p className="text-white text-sm font-medium">Ver Site Online</p>
+                  <p className="text-white text-sm font-medium">{translations.viewSiteOnline || 'Ver Site Online'}</p>
                 </div>
               </div>
             )}
@@ -450,7 +450,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
             className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
           >
             <ExternalLink size={14} />
-            <span>Ver Site</span>
+            <span>{translations.viewSite}</span>
           </a>
         )}
         
@@ -460,7 +460,7 @@ const ProjectCard = ({ project, index, translations }: { project: any, index: nu
             className="flex items-center gap-2 border border-purple-400 hover:bg-purple-400/20 px-4 py-2 rounded-full text-purple-200 text-sm font-medium transition-all duration-300"
           >
             <Globe size={14} />
-            <span>{showPreview ? 'Ocultar' : 'Preview'}</span>
+            <span>{showPreview ? translations.hide : translations.preview}</span>
           </button>
         )}
 
@@ -577,7 +577,20 @@ const translations = {
     viewProject: "Ver Projeto",
     viewSite: "Ver Site",
     scientificArticle: "Artigo Científico",
-    viewReportage: "Ver Reportagem"
+    viewReportage: "Ver Reportagem",
+    // Social profiles
+    professionalNetwork: "Rede Profissional",
+    connect: "Conectar",
+    viewProfile: "Ver Perfil",
+    availableOpportunities: "Disponível para oportunidades",
+    developerPlatform: "Plataforma de Desenvolvedores",
+    follow: "Seguir",
+    viewCode: "Ver Código",
+    activeDeveloper: "Desenvolvedor ativo",
+    viewSiteOnline: "Ver Site Online",
+    sitePreview: "Preview do Site",
+    hide: "Ocultar",
+    preview: "Preview"
   },
   en: {
     fullStackDeveloper: "Full Stack Developer specialized in creating incredible digital experiences",
@@ -650,7 +663,20 @@ const translations = {
     viewProject: "View Project",
     viewSite: "View Site",
     scientificArticle: "Scientific Article",
-    viewReportage: "View Report"
+    viewReportage: "View Report",
+    // Social profiles
+    professionalNetwork: "Professional Network",
+    connect: "Connect",
+    viewProfile: "View Profile",
+    availableOpportunities: "Available for opportunities",
+    developerPlatform: "Developer Platform",
+    follow: "Follow",
+    viewCode: "View Code",
+    activeDeveloper: "Active developer",
+    viewSiteOnline: "View Site Online",
+    sitePreview: "Site Preview",
+    hide: "Hide",
+    preview: "Preview"
   }
 };
 
@@ -1631,7 +1657,7 @@ export default function HomePage() {
                   transition={{ duration: 0.3 }}
                   className="relative z-10"
                 >
-                  <LinkedInProfile />
+                  <LinkedInProfile t={t} />
                 </motion.div>
                 
                 {/* GitHub Profile */}
@@ -1642,7 +1668,7 @@ export default function HomePage() {
                   transition={{ delay: 0.3, duration: 0.6 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <GitHubProfile />
+                  <GitHubProfile t={t} />
                 </motion.div>
                 
                 {/* Elementos decorativos */}
