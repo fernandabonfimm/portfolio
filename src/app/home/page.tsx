@@ -506,7 +506,7 @@ const translations = {
     backendCloud: "Backend & Cloud",
     toolsPlatforms: "Tools & Platforms",
     contactInfo: "Informações de Contato",
-    availableFreelance: "🚀 Disponível para Freelances",
+    availableFreelance: "Disponível para Freelances",
     remoteWork: "Trabalho remoto para o mundo todo",
     internationalWork: "Trabalho Remoto Internacional",
     globalExperience: "Experiência com clientes globais • Disponível para oportunidades no exterior"
@@ -537,7 +537,7 @@ const translations = {
     backendCloud: "Backend & Cloud",
     toolsPlatforms: "Tools & Platforms",
     contactInfo: "Contact Information",
-    availableFreelance: "🚀 Available for Freelance",
+    availableFreelance: "Available for Freelance",
     remoteWork: "Remote work worldwide",
     internationalWork: "International Remote Work",
     globalExperience: "Experience with global clients • Available for international opportunities"
@@ -750,16 +750,16 @@ export default function HomePage() {
 
   // Projetos Freelance Reais 2022-2025
   const projects = [
-    {
-      title: "Clica Cidadão",
-      description: "Aplicativo React Native para comunicação municipal em pré-lançamento no Google Play. Inclui painel administrativo completo com React, Node.js e MongoDB.",
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop",
-      technologies: ["React Native", "JavaScript", "React", "Node.js", "MongoDB"],
-      demo: "https://clicacidadao.com.br",
-      playStore: "https://play.google.com/store/apps/details?id=com.clicacidadao.clickapp",
-      period: "2022-2024",
-      type: "App Mobile + Admin Panel"
-    },
+    // {
+    //   title: "Clica Cidadão",
+    //   description: "Aplicativo React Native para comunicação municipal em pré-lançamento no Google Play. Inclui painel administrativo completo com React, Node.js e MongoDB.",
+    //   image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop",
+    //   technologies: ["React Native", "JavaScript", "React", "Node.js", "MongoDB"],
+    //   demo: "https://clicacidadao.com.br",
+    //   playStore: "https://play.google.com/store/apps/details?id=com.clicacidadao.clickapp",
+    //   period: "2022-2024",
+    //   type: "App Mobile + Admin Panel"
+    // },
     {
       title: "Qrious Eye Studio Canada",
       description: "Site WordPress para designer têxtil canadense com portfolio profissional, estratégias de lead generation e otimização SEO para estúdio B2B.",
@@ -1058,9 +1058,17 @@ export default function HomePage() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center bg-gradient-to-r from-purple-500/10 to-blue-500/10 backdrop-blur-lg rounded-2xl p-6 border border-purple-400/20"
           >
             <div className="text-center sm:text-left">
-              <p className="text-lg font-semibold text-white mb-1">
-                {t.availableFreelance}
-              </p>
+              <div className="flex items-center gap-2 mb-1">
+                <motion.div
+                  animate={{ y: [0, -2, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <ExternalLink className="text-purple-400" size={20} />
+                </motion.div>
+                <p className="text-lg font-semibold text-white">
+                  Disponível para Freelances
+                </p>
+              </div>
               <p className="text-gray-300 text-sm">
                 {t.remoteWork}
               </p>
@@ -1163,12 +1171,39 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.6 }}
               >
-                <p className="text-emerald-300 font-medium mb-1">
-                  🌍 {t.internationalWork}
-                </p>
+                <div className="flex items-center gap-2 mb-1">
+                  <Globe className="text-emerald-400" size={20} />
+                  <p className="text-emerald-300 font-medium">
+                    {t.internationalWork}
+                  </p>
+                </div>
                 <p className="text-gray-300 text-sm">
                   {t.globalExperience}
                 </p>
+              </motion.div>
+
+              {/* Informações da Empresa */}
+              <motion.div 
+                className="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-400/20"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.6 }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <Briefcase className="text-purple-400" size={20} />
+                  <p className="text-purple-300 font-medium">
+                    FBS Tecnologia
+                  </p>
+                </div>
+                <p className="text-gray-300 text-sm mb-2">
+                  CNPJ: 61.171.635/0001-46 • Empresa de desenvolvimento de software
+                </p>
+                <div className="flex items-center gap-2">
+                  <Code className="text-purple-400" size={18} />
+                  <p className="text-gray-300 text-sm">
+                    Empreendendo na área com consultoria e desenvolvimento de sites e aplicativos desde 2022
+                  </p>
+                </div>
               </motion.div>
               
               {/* Seção de Tecnologias */}
@@ -1944,6 +1979,10 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 text-gray-300">
                   <MapPin size={16} className="text-blue-400" />
                   <span>Ribeirão Preto, SP - Brasil • Trabalho Remoto Global</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <Briefcase size={16} className="text-purple-400" />
+                  <span>FBS Tecnologia - CNPJ: 61.171.635/0001-46</span>
                 </div>
               </div>
             </div>
