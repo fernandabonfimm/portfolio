@@ -5,7 +5,7 @@ import Paragraph from '@/components/paragraph'
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import { logoCerberusVerticalHomeImg } from '../../../public/public-modules';
+import { logoPortfolioVerticalHomeImg } from '../../../public/public-modules';
 import useLocale from '@/base-components/useLocale';
 import en from './dictionaries/en.json';
 import pt from './dictionaries/pt.json';
@@ -17,7 +17,7 @@ function Footer() {
         <footer className="relative flex justify-center items-center w-full px-12 z-[21] bg-white text-black ">
             <Content id='footer'>
                 <div className='flex gap-24 lg:flex-row flex-col items-center'>
-                    <Image src={logoCerberusVerticalHomeImg} alt={''} className='w-32 '></Image>
+                    <Image src={logoPortfolioVerticalHomeImg} alt={''} className='w-32 '></Image>
                     <div className=' flex-1 flex flex-col gap-3 justify-center'>
                         <span className='font-semibold'>
                             <Link href="/politicas-de-privacidade" className="hover:text-laranja transition-colors">{dict.privacy}</Link>

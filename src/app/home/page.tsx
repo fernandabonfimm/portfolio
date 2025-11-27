@@ -846,11 +846,11 @@ export default function HomePage() {
       type: "Cybersecurity Website"
     },
     {
-      title: "Cerberus - Monitoramento e Automação",
+      title: "Portfolio - Monitoramento e Automação",
       description: "Frontend para startup de São Paulo especializada em monitoria e automação de riscos para empresas como bancos. Desenvolvido com Next.js, CSS e HTML.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
       technologies: ["Next.js", "CSS", "HTML", "Risk Management", "Banking"],
-      demo: "https://cerberus-frontend.vercel.app",
+      demo: "https://Portfolio-frontend.vercel.app",
       period: "Novembro 2025",
       type: "Risk Management Platform"
     },

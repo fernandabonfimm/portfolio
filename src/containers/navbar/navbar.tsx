@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { cerberusLogoHomeImg, brazilFlagHomeImg, unitedStatesOfAmericaHomeImg } from "../../../public/public-modules"
+import { PortfolioLogoHomeImg, brazilFlagHomeImg, unitedStatesOfAmericaHomeImg } from "../../../public/public-modules"
 import useLocale from '@/base-components/useLocale'
 import en from './dictionaries/en.json'
 import pt from './dictionaries/pt.json'
@@ -46,7 +46,7 @@ function Navbar() {
       <Content variation='no-space' id={''} >
         <div className='flex justify-between h-24 items-center'>
           <div className='flex items-center gap-6 flex-1'>
-            <Image src={cerberusLogoHomeImg} className="w-44 transition-all" alt="" />
+            <Image src={PortfolioLogoHomeImg} className="w-44 transition-all" alt="" />
           </div>
           <div className="flex items-center w-fit justify-between lg:justify-end gap-x-12 font-semibold">
             {/* Links e botões para telas grandes (lg:flex) */}
@@ -95,7 +95,7 @@ function Navbar() {
             <div className="flex items-center justify-between ">
               <Link href="/home" onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                 {/* Logo no mobile */}
-                <Image src={cerberusLogoHomeImg} className="w-40 transition-all" alt="" />
+                <Image src={PortfolioLogoHomeImg} className="w-40 transition-all" alt="" />
               </Link>
               <button onClick={() => setMobileMenuOpen(false)} type="button" className="-m-2.5 rounded-md p-2.5 ">
                 <span className="sr-only">Fechar menu</span>
