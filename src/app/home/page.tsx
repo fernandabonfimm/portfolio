@@ -335,6 +335,7 @@ const GitHubProfile = () => {
 // Project Card Component
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
     <motion.div
@@ -345,29 +346,67 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Project Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-purple-300 font-medium">{project.type}</span>
+            <span className="text-gray-400">•</span>
+            <span className="text-gray-400">{project.period}</span>
+            {project.location && (
+              <>
+                <span className="text-gray-400">•</span>
+                <span className="text-blue-300">{project.location}</span>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Project Image/Preview */}
       <div className="relative overflow-hidden rounded-lg mb-4">
-        <img 
-          src={project.image} 
-          alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-        />
+        {showPreview && project.demo && project.demo !== '#' ? (
+          <div className="w-full h-48 bg-gray-900/50 rounded-lg overflow-hidden border border-gray-400/20">
+            <iframe
+              src={project.demo}
+              className="w-full h-full scale-75 origin-top-left"
+              title={`Preview - ${project.title}`}
+              frameBorder="0"
+              sandbox="allow-scripts allow-same-origin"
+              loading="lazy"
+              style={{ width: '133.33%', height: '133.33%' }}
+            />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 to-transparent" />
+          </div>
+        ) : (
+          <img 
+            src={project.image} 
+            alt={project.title}
+            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+        )}
         <motion.div 
           className="absolute inset-0 bg-purple-600/20 flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ExternalLink className="text-white" size={24} />
+          {project.demo && project.demo !== '#' ? (
+            <Globe className="text-white" size={24} />
+          ) : (
+            <ExternalLink className="text-white" size={24} />
+          )}
         </motion.div>
       </div>
       
-      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-      <p className="text-gray-300 mb-4">{project.description}</p>
+      <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
       
+      {/* Technologies */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {project.technologies.map((tech: string, index: number) => (
+        {project.technologies.map((tech: string, techIndex: number) => (
           <span 
-            key={index}
+            key={techIndex}
             className="px-3 py-1 bg-purple-500/30 text-purple-200 rounded-full text-sm"
           >
             {tech}
@@ -375,23 +414,63 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
         ))}
       </div>
       
-      <div className="flex gap-3">
+      {/* Action Buttons */}
+      <div className="flex flex-wrap gap-2">
+        {project.demo && project.demo !== '#' && (
+          <a 
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105"
+          >
+            <ExternalLink size={14} />
+            <span>Ver Site</span>
+          </a>
+        )}
+        
+        {project.demo && project.demo !== '#' && (
+          <button 
+            onClick={() => setShowPreview(!showPreview)}
+            className="flex items-center gap-2 border border-purple-400 hover:bg-purple-400/20 px-4 py-2 rounded-full text-purple-200 text-sm font-medium transition-all duration-300"
+          >
+            <Globe size={14} />
+            <span>{showPreview ? 'Ocultar' : 'Preview'}</span>
+          </button>
+        )}
+
+        {project.playStore && (
+          <a 
+            href={project.playStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+          >
+            <Smartphone size={14} />
+            <span>Play Store</span>
+          </a>
+        )}
+
+        {project.additionalLink && project.additionalLink !== '#' && (
+          <a 
+            href={project.additionalLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 border border-gray-400 hover:bg-gray-400/20 px-4 py-2 rounded-full text-gray-200 text-sm font-medium transition-all duration-300"
+          >
+            <ExternalLink size={14} />
+            <span>{project.additionalLinkText || 'Ver Mais'}</span>
+          </a>
+        )}
+
         {project.github && (
           <a 
             href={project.github}
-            className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors px-3 py-2"
           >
             <Github size={16} />
             <span>Código</span>
-          </a>
-        )}
-        {project.demo && (
-          <a 
-            href={project.demo}
-            className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors"
-          >
-            <ExternalLink size={16} />
-            <span>Demo</span>
           </a>
         )}
       </div>
@@ -669,31 +748,96 @@ export default function HomePage() {
     'Metodologias Ágeis'
   ];
 
-  // Sample data - você pode substituir pelos seus dados reais
+  // Projetos Freelance Reais 2022-2025
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "Plataforma completa de e-commerce com painel administrativo, sistema de pagamentos e gestão de produtos.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      github: "https://github.com/fernandabonfimm",
-      demo: "#"
+      title: "Clica Cidadão",
+      description: "Aplicativo React Native para comunicação municipal em pré-lançamento no Google Play. Inclui painel administrativo completo com React, Node.js e MongoDB.",
+      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop",
+      technologies: ["React Native", "JavaScript", "React", "Node.js", "MongoDB"],
+      demo: "https://clicacidadao.com.br",
+      playStore: "https://play.google.com/store/apps/details?id=com.clicacidadao.clickapp",
+      period: "2022-2024",
+      type: "App Mobile + Admin Panel"
     },
     {
-      title: "Task Management App",
-      description: "Aplicativo de gerenciamento de tarefas com funcionalidades avançadas de organização e colaboração.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-      github: "https://github.com/fernandabonfimm",
-      demo: "#"
+      title: "Qrious Eye Studio Canada",
+      description: "Site WordPress para designer têxtil canadense com portfolio profissional, estratégias de lead generation e otimização SEO para estúdio B2B.",
+      image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "SEO", "Lead Generation", "B2B Strategy"],
+      demo: "https://qriouseyestudio.com",
+      period: "2023",
+      type: "Business Website"
     },
     {
-      title: "Portfolio Website",
-      description: "Site portfolio responsivo com animações suaves e design moderno para mostrar projetos e habilidades.",
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop",
-      technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
-      github: "https://github.com/fernandabonfimm",
-      demo: "#"
+      title: "Andrea Vitaliano - Elas em Cena",
+      description: "Sites WordPress e automação de marketing para eventos e mentorias. Projeto Elas em Cena para mulheres empreendedoras e mentorias corporativas em saúde mental.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Marketing Automation", "Event Management"],
+      demo: "https://andreavitaliano.com.br",
+      additionalLink: "#",
+      additionalLinkText: "Elas em Cena",
+      period: "2023-2024",
+      type: "Events & Mentorship"
+    },
+    {
+      title: "Fernanda Araújo - Motokando a Dois",
+      description: "Landing pages e funis de marketing WordPress para estrategista de mídias sociais. Promoção de serviços online, livro físico e e-book de viagens.",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Digital Marketing", "Sales Funnel", "E-commerce"],
+      demo: "https://fernomarketing.com.br",
+      additionalLink: "https://motokandoadois.com.br",
+      additionalLinkText: "Motokando a Dois",
+      period: "2024",
+      type: "Marketing & E-commerce"
+    },
+    {
+      title: "Trixx Fábrica de Software - Portugal",
+      description: "Desenvolvimento front-end do MVP 'Estude em Portugal' com TypeScript e Next.js. Novas funcionalidades e correções em apps mobile React Native.",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop",
+      technologies: ["TypeScript", "Next.js", "React Native", "JavaScript"],
+      demo: "#",
+      period: "2024",
+      type: "MVP Development",
+      location: "Portugal"
+    },
+    {
+      title: "G-Motors - Concessionária de Luxo",
+      description: "Site completo para concessionária de veículos de luxo via Agência UAMA. Da coleta de requisitos ao protótipo Figma e desenvolvimento WordPress com hospedagem HostGator.",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Figma", "HostGator", "Luxury Design"],
+      demo: "#",
+      period: "2023",
+      type: "Automotive Website"
+    },
+    {
+      title: "Jota IT - Cybersegurança",
+      description: "Website para empresa de cybersegurança desenvolvido em WordPress com foco em serviços de segurança digital e consultoria especializada.",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Cybersecurity", "Corporate Design"],
+      demo: "https://jotait.com.br",
+      period: "Agosto 2025",
+      type: "Cybersecurity Website"
+    },
+    {
+      title: "Cerberus - Monitoramento e Automação",
+      description: "Frontend para startup de São Paulo especializada em monitoria e automação de riscos para empresas como bancos. Desenvolvido com Next.js, CSS e HTML.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      technologies: ["Next.js", "CSS", "HTML", "Risk Management", "Banking"],
+      demo: "https://cerberus-frontend.vercel.app",
+      period: "Novembro 2025",
+      type: "Risk Management Platform"
+    },
+    {
+      title: "Balões Pic Pic - E-commerce",
+      description: "Site vitrine completa para loja de balões e decorações. Desenvolvido com PHP, HTML e MySQL. Inclui painel administrativo MVC em PHP com framework e hospedagem cPanel.",
+      image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&h=300&fit=crop",
+      technologies: ["PHP", "HTML", "MySQL", "MVC Framework", "cPanel"],
+      demo: "https://baloespicpic.com.br",
+      additionalLink: "https://baloespicpic.com.br/lp",
+      additionalLinkText: "Landing Page",
+      period: "2024-2025",
+      type: "E-commerce + Admin Panel"
     }
   ];
 
@@ -720,16 +864,62 @@ export default function HomePage() {
 
   const experiences = [
     {
-      role: "Desenvolvedora Full Stack",
-      company: "Tech Solutions",
-      period: "2022 - Presente",
-      description: "Desenvolvimento de aplicações web completas usando React, Node.js e bancos de dados relacionais."
+      role: "Desenvolvedora Fullstack Pleno",
+      company: "Gelato Borelli",
+      period: "Julho 2025 - Presente",
+      description: "Desenvolvedora na franqueadora Gelato Borelli, atuando na entrega de soluções inovadoras para mais de 200 lojas franqueadas no Brasil. Desenvolvimento de APIs em PHP (MVC) com banco de dados Firebird, projetos front-end com React Native e Next.js, incluindo sistema de gestão de filas.",
+      highlights: ["200+ lojas franqueadas", "PHP MVC + Firebird", "React Native + Next.js", "Gestão de filas"],
+      type: "Fullstack"
+    },
+    {
+      role: "Desenvolvedora de Software",
+      company: "RDI Software part of Capgemini",
+      period: "Março 2024 - Julho 2025",
+      description: "Atuação como desenvolvedora C# e JavaScript em sistema distribuído legado de POS utilizado pela rede global de fast food McDonald's. Integrante do time LATAM, responsável pelo desenvolvimento, manutenção e entrega semanal de bundles para mais de 2.200 lojas na América Latina.",
+      highlights: ["2.200+ lojas McDonald's LATAM", "C# + JavaScript ECMA3", "Sistema POS distribuído", "Sprints semanais"],
+      type: "Enterprise Software"
+    },
+    {
+      role: "Desenvolvedora de Software Fullstack",
+      company: "Lastlink",
+      period: "Novembro 2023 - Março 2024",
+      description: "Contribuição para o desenvolvimento de novo painel para criadores de conteúdo com recursos de relatórios de vendas. Backend com C#, .NET, Entity Framework, MySQL e microsserviços. Frontend com Angular, React.js, HTML, SCSS, TailwindCSS. Mensageria com RabbitMQ para chat e pagamentos.",
+      highlights: ["Painel para creators", "Microsserviços + RabbitMQ", "Angular + React", "MySQL + .NET"],
+      type: "Creator Economy",
+      link: "https://blog.lastlink.com/nova-dashboard-lastlink/",
+      linkText: "Ver Dashboard"
+    },
+    {
+      role: "Desenvolvedora Web e Web Design",
+      company: "Digito Agência",
+      period: "Fevereiro 2023 - Dezembro 2023",
+      description: "Desenvolvimento completo de sites e colaboração com clientes. Liderança em levantamento de requisitos, prototipagem Figma, implantação WordPress/Shopify, automação de marketing. Implementação de lead generation, e-mail marketing e automação WhatsApp com GPT-3.5/4.0.",
+      highlights: ["WordPress + Shopify", "Automação GPT", "Lead Generation", "Múltiplos setores"],
+      type: "Web Agency"
+    },
+    {
+      role: "Desenvolvedora de Software Fullstack",
+      company: "Evermart",
+      period: "Junho 2022 - Maio 2023",
+      description: "Desenvolvedora fullstack na startup Creator Economy Evermart. Implementação e lançamento de novo aplicativo React Native para criadores de conteúdo e afiliados, substituindo sistema anterior. Melhorias na plataforma web React e backend Node.js, NestJS, MongoDB com integração Pagar.me.",
+      highlights: ["React Native App", "Creator Economy", "Node.js + NestJS", "Integração Pagar.me"],
+      type: "Startup"
     },
     {
       role: "Desenvolvedora Front-end",
-      company: "Digital Agency",
-      period: "2021 - 2022",
-      description: "Criação de interfaces responsivas e interativas para diversos clientes."
+      company: "Fairy Solutions",
+      period: "Dezembro 2021 - Junho 2022",
+      description: "Desenvolvedora front-end na Fábrica de Software Fairy Code, desenvolvendo aplicações para diversos clientes com JavaScript, React, TypeScript e Next.js. Destaque para soluções no setor de aviação e plataforma para médicos oncologistas para diagnóstico e tratamento de pacientes.",
+      highlights: ["Setor aviação", "Plataforma médica", "React + TypeScript", "Next.js"],
+      type: "Software Factory"
+    },
+    {
+      role: "Analista de Redes",
+      company: "Multifrio Refrigeração",
+      period: "Junho 2021 - Dezembro 2021",
+      description: "Primeiro emprego na área de T.I. Responsável pela infraestrutura de T.I da empresa de refrigeração em Ribeirão Preto. Formatação de máquinas, configuração de impressoras, suporte à conectividade com internet e suporte técnico no sistema ERP Protheus.",
+      highlights: ["Primeiro emprego T.I", "Infraestrutura completa", "ERP Protheus", "Suporte técnico"],
+      type: "IT Support"
     }
   ];
 
@@ -1216,11 +1406,36 @@ export default function HomePage() {
             </span>
           </motion.h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
             ))}
           </div>
+
+          {/* Seção de Estatísticas dos Projetos */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+              <div className="text-3xl font-bold text-purple-400 mb-1">9+</div>
+              <div className="text-sm text-gray-300">Projetos Entregues</div>
+            </div>
+            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+              <div className="text-3xl font-bold text-blue-400 mb-1">4</div>
+              <div className="text-sm text-gray-300">Anos de Experiência</div>
+            </div>
+            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+              <div className="text-3xl font-bold text-green-400 mb-1">100%</div>
+              <div className="text-sm text-gray-300">Projetos no Prazo</div>
+            </div>
+            <div className="text-center p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+              <div className="text-3xl font-bold text-yellow-400 mb-1">3</div>
+              <div className="text-sm text-gray-300">Países Atendidos</div>
+            </div>
+          </motion.div>
         </div>
       </AnimatedSection>
 
@@ -1381,21 +1596,91 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 hover:border-blue-400/50 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/20 hover:border-blue-400/50 transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-500/20 p-3 rounded-full">
+                  <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-3 rounded-full border border-blue-400/30">
                     <Briefcase className="text-blue-400" size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
-                    <p className="text-blue-300 font-medium mb-2">{exp.company} • {exp.period}</p>
-                    <p className="text-gray-300">{exp.description}</p>
+                    {/* Header */}
+                    <div className="flex flex-wrap items-start justify-between mb-2">
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-1">{exp.role}</h3>
+                        <div className="flex items-center gap-2 mb-2">
+                          <p className="text-blue-300 font-medium">{exp.company}</p>
+                          <span className="text-gray-400">•</span>
+                          <span className="text-sm text-gray-400">{exp.period}</span>
+                        </div>
+                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-xs font-medium text-blue-300">
+                          {exp.type}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-300 leading-relaxed mb-4">{exp.description}</p>
+                    
+                    {/* Highlights */}
+                    {exp.highlights && exp.highlights.length > 0 && (
+                      <div className="mb-4">
+                        <h4 className="text-sm font-semibold text-white mb-2">Principais Conquistas:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {exp.highlights.map((highlight, hIndex) => (
+                            <span 
+                              key={hIndex}
+                              className="px-3 py-1 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-400/30 rounded-full text-xs font-medium text-emerald-300"
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Link */}
+                    {exp.link && exp.linkText && (
+                      <div className="mt-4">
+                        <a 
+                          href={exp.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 inline-flex w-fit"
+                        >
+                          <ExternalLink size={14} />
+                          {exp.linkText}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Resumo da Experiência */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            <div className="text-center p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-lg rounded-xl border border-blue-400/20">
+              <div className="text-3xl font-bold text-blue-400 mb-2">4+</div>
+              <div className="text-sm text-gray-300 mb-1">Anos de Experiência</div>
+              <div className="text-xs text-gray-400">Desde primeiro emprego T.I</div>
+            </div>
+            <div className="text-center p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-lg rounded-xl border border-purple-400/20">
+              <div className="text-3xl font-bold text-purple-400 mb-2">7</div>
+              <div className="text-sm text-gray-300 mb-1">Empresas Trabalhadas</div>
+              <div className="text-xs text-gray-400">Startups a Multinacionais</div>
+            </div>
+            <div className="text-center p-6 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 backdrop-blur-lg rounded-xl border border-emerald-400/20">
+              <div className="text-3xl font-bold text-emerald-400 mb-2">2.400+</div>
+              <div className="text-sm text-gray-300 mb-1">Lojas Impactadas</div>
+              <div className="text-xs text-gray-400">McDonald's + Gelato Borelli</div>
+            </div>
+          </motion.div>
         </div>
       </AnimatedSection>
 
