@@ -597,7 +597,7 @@ const translations = {
     viewProjects: "View Projects",
     contact: "Get in Touch",
     aboutMe: "About Me",
-    projects: "Developed Projects",
+    projects: "Freelance Projects",
     awards: "Awards and Recognition",
     experience: "Professional Experience",
     education: "Academic Background",
@@ -1108,6 +1108,74 @@ export default function HomePage() {
 
   // Projects - English Version
   const projectsEn = [
+    {
+      title: "Qrious Eye Studio Canada",
+      description: "WordPress website for Canadian textile designer with professional portfolio, lead generation strategies and SEO optimization for B2B studio.",
+      image: "https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "SEO", "Lead Generation", "B2B Strategy"],
+      demo: "https://qriouseyestudio.com",
+      period: "2023",
+      type: "Business Website"
+    },
+    {
+      title: "Andrea Vitaliano - Women on Stage",
+      description: "WordPress websites and marketing automation for events and mentoring. Women on Stage project for female entrepreneurs and corporate mentoring in mental health.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Marketing Automation", "Event Management"],
+      demo: "https://andreavitaliano.com.br",
+      additionalLink: "#",
+      additionalLinkText: "Women on Stage",
+      period: "2023-2024",
+      type: "Events & Mentorship"
+    },
+    {
+      title: "Fernanda Araújo - Traveling Together",
+      description: "WordPress landing pages and marketing funnels for social media strategist. Promotion of online services, physical book and travel e-book.",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Digital Marketing", "Sales Funnel", "E-commerce"],
+      demo: "https://fernomarketing.com.br",
+      additionalLink: "https://motokandoadois.com.br",
+      additionalLinkText: "Traveling Together",
+      period: "2024",
+      type: "Marketing & E-commerce"
+    },
+    {
+      title: "Trixx Software Factory - Portugal",
+      description: "Frontend development of 'Study in Portugal' MVP with TypeScript and Next.js. New features and fixes in React Native mobile apps.",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop",
+      technologies: ["TypeScript", "Next.js", "React Native", "JavaScript"],
+      demo: "#",
+      period: "2024",
+      type: "Software Factory",
+      location: "Portugal"
+    },
+    {
+      title: "G-Motors - Luxury Car Dealership",
+      description: "Complete website for luxury vehicle dealership via UAMA Agency. From requirements gathering to Figma prototype and WordPress development with HostGator hosting.",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Figma", "HostGator", "Luxury Design"],
+      demo: "#",
+      period: "2023",
+      type: "Automotive Website"
+    },
+    {
+      title: "Jota IT - Cybersecurity",
+      description: "Website for cybersecurity company developed in WordPress with focus on digital security services and specialized consulting.",
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
+      technologies: ["WordPress", "Cybersecurity", "Corporate Design"],
+      demo: "https://jotait.com.br",
+      period: "August 2025",
+      type: "Cybersecurity Website"
+    },
+    {
+      title: "Portfolio - Monitoring and Automation",
+      description: "Frontend for São Paulo startup specialized in risk monitoring and automation for companies like banks. Developed with Next.js, CSS and HTML.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      technologies: ["Next.js", "CSS", "HTML", "Risk Management", "Banking"],
+      demo: "https://Portfolio-frontend.vercel.app",
+      period: "November 2025",
+      type: "Risk Management Platform"
+    },
     {
       title: "Balões Pic Pic E-commerce",
       description: "Complete e-commerce development for balloon decoration company. Custom PHP system with shopping cart, admin panel, product management, and cPanel hosting integration.",
