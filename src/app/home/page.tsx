@@ -869,7 +869,7 @@ export default function HomePage() {
       period: "Julho 2025 - Presente",
       description: "Desenvolvedora na franqueadora Gelato Borelli, atuando na entrega de soluções inovadoras para mais de 200 lojas franqueadas no Brasil. Desenvolvimento de APIs em PHP (MVC) com banco de dados Firebird, projetos front-end com React Native e Next.js, incluindo sistema de gestão de filas.",
       highlights: ["200+ lojas franqueadas", "PHP MVC + Firebird", "React Native + Next.js", "Gestão de filas"],
-      type: "Fullstack"
+      type: "Maior rede de franquias de Gelato do Brasil"
     },
     {
       role: "Desenvolvedora de Software",
@@ -885,7 +885,7 @@ export default function HomePage() {
       period: "Novembro 2023 - Março 2024",
       description: "Contribuição para o desenvolvimento de novo painel para criadores de conteúdo com recursos de relatórios de vendas. Backend com C#, .NET, Entity Framework, MySQL e microsserviços. Frontend com Angular, React.js, HTML, SCSS, TailwindCSS. Mensageria com RabbitMQ para chat e pagamentos.",
       highlights: ["Painel para creators", "Microsserviços + RabbitMQ", "Angular + React", "MySQL + .NET"],
-      type: "Creator Economy",
+      type: "Startup",
       link: "https://blog.lastlink.com/nova-dashboard-lastlink/",
       linkText: "Ver Dashboard"
     },
@@ -895,7 +895,7 @@ export default function HomePage() {
       period: "Fevereiro 2023 - Dezembro 2023",
       description: "Desenvolvimento completo de sites e colaboração com clientes. Liderança em levantamento de requisitos, prototipagem Figma, implantação WordPress/Shopify, automação de marketing. Implementação de lead generation, e-mail marketing e automação WhatsApp com GPT-3.5/4.0.",
       highlights: ["WordPress + Shopify", "Automação GPT", "Lead Generation", "Múltiplos setores"],
-      type: "Web Agency"
+      type: "Marketing Agency"
     },
     {
       role: "Desenvolvedora de Software Fullstack",
@@ -949,7 +949,6 @@ export default function HomePage() {
       description: "Liderança e desenvolvimento do site WordPress da Filamento (agência sem fins lucrativos). Entrega completa em 3 dias com blog, eventos e projetos. Hospedado no Azure com Elementor e protótipo Figma validado. Atualmente ministrando aulas semanais sobre manutenção do projeto.",
       link: "https://filamento.baraodemaua.br",
       linkText: "Ver Site",
-      supervisor: "Prof. Márcio Huertas"
     },
     {
       degree: "Mentoria e Ensino de Desenvolvimento",
@@ -1769,12 +1768,6 @@ export default function HomePage() {
                       <p className="text-purple-300 font-medium">{edu.institution}</p>
                       <span className="text-gray-400">•</span>
                       <span className="text-sm text-gray-400">{edu.period}</span>
-                      {edu.supervisor && (
-                        <>
-                          <span className="text-gray-400">•</span>
-                          <span className="text-sm text-blue-300">{edu.supervisor}</span>
-                        </>
-                      )}
                     </div>
                     <p className="text-gray-300 leading-relaxed mb-4">{edu.description}</p>
                     
